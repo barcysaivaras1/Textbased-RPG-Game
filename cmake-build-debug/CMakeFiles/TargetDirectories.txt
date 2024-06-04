@@ -1,0 +1,3 @@
+C:/Users/sayuw/Downloads/C++Projects/RPG GAME/cmake-build-debug/CMakeFiles/RPG_GAME.dir
+C:/Users/sayuw/Downloads/C++Projects/RPG GAME/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/sayuw/Downloads/C++Projects/RPG GAME/cmake-build-debug/CMakeFiles/rebuild_cache.dir

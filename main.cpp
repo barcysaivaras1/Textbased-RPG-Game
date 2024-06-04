@@ -1,0 +1,71 @@
+#include <iostream>
+#include "Combat.cpp"
+#include <windows.h>
+
+
+int main() {
+    std::cout << "*******************Creating a character*******************\n";
+    races race;
+    types type;
+    int user_input;
+
+    //Player creating their character
+    do {
+        std::cin.clear();
+        fflush(stdin);
+        std::cout << "Please select a race 1-5\n";
+        std::cout << "1. Human\n";
+        std::cout << "2. Elf\n";
+        std::cout << "3. Orc\n";
+        std::cout << "4. Lizard\n";
+        std::cout << "5. Arachnid\n";
+        std::cin >> user_input;
+    }while(user_input < 1 && user_input < 5);
+    race = (races)user_input;
+
+    do {
+        std::cin.clear();
+        fflush(stdin);
+        std::cout << "Please select a race 1-5\n";
+        std::cout << "1. Warrior\n";
+        std::cout << "2. Bandit\n";
+        std::cout << "3. Traveller\n";
+        std::cout << "4. Barbarian\n";
+        std::cout << "5. Wizard\n";
+        std::cin >> user_input;
+    }while(user_input < 1 && user_input < 5);
+
+
+
+    Combat fight;
+
+    type = (types)user_input;
+    //Player Object
+    character Player(race,type);
+
+    //The loop will break if the players health reaches 0 or below
+    int turn_counter = 1;
+    //while(Player.getHealth() > 0) {
+        //Create an Enemy
+        character Enemy((races)3,(types)4);
+        //Combat will continue until the enemy dies
+        do {
+            std::cout << "************* Combat Turn " << turn_counter << " *************\n";
+            Enemy.printArt();
+            Enemy.display_stats();
+            std::cout << "\n";
+            std::cout << "Player Health : " << Player.getHealth() << "\n";
+            std::cout << "Enemy Health : " << Enemy.getHealth() << "\n";
+            turn_counter+=1;
+            std::cout << "\n";
+            std::cout << "****PLAYER TURN****\n";
+            fight.player_turn(Player,Enemy);
+            std::cout << "\n";
+            std::cout << "****ENEMY TURN****\n";
+            fight.player_turn(Enemy,Player);
+            //_sleep(1000);
+        }while(Enemy.getHealth() > 0);
+    //}
+
+    return 0;
+}
