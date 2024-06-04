@@ -6,6 +6,7 @@
 class Combat {
 public:
     //This should handle player choice and display all of their skills
+    //This will be turn based
     // **CURRENTLY ONLY DAMAGE**
     void player_turn(character &attacker, character &defender) {
         int damage = attacker.get_stats()["STR"];
