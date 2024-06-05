@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Combat.cpp"
 #include <windows.h>
+#include <ctime>
 
 
 int main() {
@@ -46,8 +47,14 @@ int main() {
     //The loop will break if the players health reaches 0 or below
     int turn_counter = 1;
     while(Player.getHealth() > 0) {
+        //Number of arms generated, 1 - 4
+        srand(time((NULL)));
+        int race = rand() % 5;
+        int type = rand() % 5;
+
+
         //Create an Enemy
-        character Enemy((races)3,(types)4);
+        character Enemy((races)race,(types)type);
         //Combat will continue until the enemy dies
         do {
             std::cout << "************* Combat Turn " << turn_counter << " *************\n";
@@ -67,5 +74,23 @@ int main() {
         }while(Enemy.getHealth() > 0 & Player.getHealth() > 0);
     }
 
+    std::cout << "You have died, your adventure end here";
+
+    std::cout << "\n\n";
+    std::cout << " _    _.--.____.--._                            @@@@@@@@@@@@@@@@@@\n";
+    std::cout << "( )=.-\":;:;:;;':;:;:;\"-._		      @@@@@@@@@@@@@@@@@@@@@@@\n";
+    std::cout << " \\\\\\:;:;:;:;:;;:;::;:;:;:\\                  @@@@@@@@@@@@@@@@@@@@@@@@@@@\n";
+    std::cout << "  \\\\\\:;:;:;:;:;;:;:;:;:;:;:\\                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n";
+    std::cout << "   \\\\\\:;::;:;:;:;:;::;:;:;:\\              @@@@@@@@@@@@@@@/      \\@@@/   @\n";
+    std::cout << "    \\\\\\:;:;:;:;:;;:;::;:;:;:\\            @@@@@@@@@@@@@@@@\\      @@  @___@\n";
+    std::cout << "     \\\\\\:;::;:;:;:;:;::;:;:;:\\           @@@@@@@@@@@@@ @@@@@@@@@@  | \\@@@@@\n";
+    std::cout << "      \\\\\\;;:;:_:--:_:_:--:_;:;\\          @@@@@@@@@@@@@ @@@@@@@@@\\__@_/@@@@@\n";
+    std::cout << "       \\\\\\_.-\"             \"-._\\          @@@@@@@@@@@@@@@/,/,/./'/_|.\\'\\,\\\n";
+    std::cout << "        \\\\                                  @@@@@@@@@@@@@|  | | | | | | | |\n";
+    std::cout << "         \\\\                                               \\_|_|_|_|_|_|_|_|\n";
+    std::cout << "          \\\\\n";
+    std::cout << "           \\\\\n";
+    std::cout << "            \\\\\n";
+    std::cout << "             \\\\\n";
     return 0;
 }

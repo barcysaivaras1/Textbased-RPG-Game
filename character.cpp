@@ -39,12 +39,12 @@ private:
         //Every character has this
         if (skill_list.empty()) {
             skill_list.insert(std::make_tuple(Attack,"Attack"));
-            std::cout << "Added Attack to the list!\n";
+            std::cout << "Added Attack to the list!\n";// TESTING
         }
         //Strength must be atleast 5 to have this
         if (this->stat_sheet["STR"] >=5) {
             skill_list.insert(std::make_tuple(Heavy_Swing,"Heavy Swing"));
-            std::cout << "Added Heavy_Swing to the list!\n";
+            std::cout << "Added Heavy_Swing to the list!\n";// TESTING
         }
     }
 public:
@@ -163,14 +163,111 @@ public:
     void printArt(){
         switch(this->race) {
             case Human:
+                std::cout << "                 ,#####,\n";
+                std::cout << "                 #_   _#\n";
+                std::cout << "                 |a` `a|\n";
+                std::cout << "                 |  u  |\n";
+                std::cout << "                 \\  =  /\n";
+                std::cout << "                 |\\___/|\n";
+                std::cout << "        ___ ____/:     :\\____ ___\n";
+                std::cout << "      .'   `.-===-\\   /-===-.`   '.\n";
+                std::cout << "     /      .-\"\"\"\"\"-.-\"\"\"\"\"-.      \\\n";
+                std::cout << "    /'             =:=             '\\\n";
+                std::cout << "  .'  ' .:    o   -=:=-   o    :. '  `.\n";
+                std::cout << "  (.'   /'. '-.....-'-.....-' .\\   '.)\n";
+                std::cout << "  /' ._/   \".     --:--     .\"   \\_. '\\\n";
+                std::cout << " |  .'|      \".  ---:---  .\"      |'.  |\n";
+                std::cout << " |  : |       |  ---:---  |       | :  |\n";
+                std::cout << "  \\ : |       |_____._____|       | : /\n";
+                std::cout << "  /   (       |----|------|       )   \\\n";
+                std::cout << " /... .|      |    |      |      |. ...\\\n";
+                std::cout << "|::::/'' jgs /     |       \\     ''\\::::|\n";
+                std::cout << "'\"\"\"\"       /'    .L_      `\\       \"\"\"\"'\n";
+                std::cout << "           /'-.,__/` `\\__..-'\\\n";
+                std::cout << "          ;      /     \\      ;\n";
+                std::cout << "          :     /       \\     |\n";
+                std::cout << "          |    /         \\.   |\n";
+                std::cout << "          |`../           |  ,/\n";
+                std::cout << "          ( _ )           |  _)\n";
+                std::cout << "          |   |           |   |\n";
+                std::cout << "          |___|           \\___|\n";
+                std::cout << "          :===|            |==|\n";
+                std::cout << "           \\  /            |__|\n";
+                std::cout << "           /\\/\\           /\"\"\"`8.__\n";
+                std::cout << "           |oo|           \\__.//___)\n";
+                std::cout << "           |==|\n";
+                std::cout << "           \\__/\n";
                 break;
             case Elf:
+                std::cout << "            ..-.--..\n";
+                std::cout << "           ,','.-`.-.`.\n";
+                std::cout << "          :.',;'     `.\.\n";
+                std::cout << "          ||//----,-.--\\|\n";
+                std::cout << "        \\`:|/-----`-'--||'/\n";
+                std::cout << "         \\\\|:    |:'\n";
+                std::cout << "          `||      \\   |!\n";
+                std::cout << "          |!|          ;|\n";
+                std::cout << "          !||:.   --  /|!\n";
+                std::cout << "         /||!||:.___.|!||\\\n";
+                std::cout << "        /|!|||!|    |!||!\\\\:.\n";
+                std::cout << "     ,'//!||!||!`._.||!||,:\\\\\\\n";
+                std::cout << "    : :: |!|||!| SSt|!||! |!::\n";
+                std::cout << "    | |! !||!|||`---!|!|| ||!|\n";
+                std::cout << "    | || |!|||!|    |!||! |!||\n";
                 break;
             case Orc:
+                std::cout << "                       _,.---''```````'-.\n";
+                std::cout << "                    ,-'`                  `-._\n";
+                std::cout << "                 ,-`                   __,-'`,\\\n";
+                std::cout << "                /             _       /,'  ,|/ \\\n";
+                std::cout << "              ,'         ,''-<_`'.    |  ,' |   \\\n";
+                std::cout << "             /          / _    `  `.  | / \\ |\\  |\n";
+                std::cout << "             |         (  |`'-,---, `'  \\_|/ |  |\n";
+                std::cout << "             |         |`  \\  \\|  /  __,    _ \\ |\n";
+                std::cout << "             |         |    `._\\,'  '    ,-`_\\ \\|\n";
+                std::cout << "             |         |        ,----      /|   )\n";
+                std::cout << "             \\         \\       / --.      {/   /|\n";
+                std::cout << "              \\         | |       `.\         / |\n";
+                std::cout << "               \\        / `-.                 | /\n";
+                std::cout << "                `.     |     `-        _,--V`)\\/        _,-\n";
+                std::cout << "                  `,   |           /``V_,.--`  \\.  _,-'`\n";
+                std::cout << "                   /`--'`._        `-'`         )`'\n";
+                std::cout << "                  /        `-.            _,.-'`\n";
+                std::cout << "                              `-.____,.-'`\n";
                 break;
             case Lizard:
+                std::cout << "          _   _\n";
+                std::cout << "          (.)-(.)\n";
+                std::cout << "          /  \"  \\\n";
+                std::cout << "         /\\'---'/\\\n";
+                std::cout << "       /|  `\"'`  |\\\n";
+                std::cout << "      // \\       / \\\\\n";
+                std::cout << "     /|\\ /  /^\\  \\ /|\\\n";
+                std::cout << "        / .'   '. \\\n";
+                std::cout << "        \\ (     ) /\n";
+                std::cout << "       /  |     |  \\\n";
+                std::cout << " jgs  /   |     |   \\\n";
+                std::cout << "     '-'-'       '-'-'\n";
                 break;
             case Arachnid:
+                std::cout << "           ____                      ,\n";
+                std::cout << "          /---.'.__             ____//\n";
+                std::cout << "               '--.\\           /.---'\n";
+                std::cout << "          _______  \\\\         //\n";
+                std::cout << "        /.------.\\  \\|      .'/  ______\n";
+                std::cout << "       //  ___  \\ \\ ||/|\\  //  _/_----.\\__\n";
+                std::cout << "      |/  /.-.\\  \\ \\:|< >|// _/.'..\\   '--'\n";
+                std::cout << "         //   \\'..| \\'..|.'/ /_/ /  \\\\\n";
+                std::cout << "        //     \\ \\_\\/\" ' ~\\-'.-'    \\\\\n";
+                std::cout << "       //       '-._| :H: |'-.__     \\\\\n";
+                std::cout << "      //           (/'===\\')'-._\\     ||\n";
+                std::cout << "      ||                        \\\\    \\|\n";
+                std::cout << "      ||                         \\\\    '\n";
+                std::cout << "snd   |/                          \\\\\n";
+                std::cout << "                                   ||\n";
+                std::cout << "                                   ||\n";
+                std::cout << "                                   \\\\\n";
+                std::cout << "                                    '\n";
                 break;
             default:
                 std::cout << "Invalid Character\n";
