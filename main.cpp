@@ -45,7 +45,7 @@ int main() {
 
     //The loop will break if the players health reaches 0 or below
     int turn_counter = 1;
-    //while(Player.getHealth() > 0) {
+    while(Player.getHealth() > 0) {
         //Create an Enemy
         character Enemy((races)3,(types)4);
         //Combat will continue until the enemy dies
@@ -62,10 +62,10 @@ int main() {
             fight.player_turn(Player,Enemy);
             std::cout << "\n";
             std::cout << "****ENEMY TURN****\n";
-            fight.player_turn(Enemy,Player);
+            fight.enemy_turn(Enemy,Player);
             //_sleep(1000);
-        }while(Enemy.getHealth() > 0);
-    //}
+        }while(Enemy.getHealth() > 0 & Player.getHealth() > 0);
+    }
 
     return 0;
 }

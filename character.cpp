@@ -22,18 +22,28 @@ private:
     std::unordered_map<std::string,int> stat_sheet;
     int max_health;
     int current_health;
+    //These two values will come in a further update
+    //int experience;
+    //int mana;
     races race;
     types type;
-    std::set<skills> skill_list;
+    std::set<std::tuple <skills,std::string>> skill_list;
+
 
 private:
     void add_skills() {
+        //This will be called at the beginning of a characters creation
+        //and when a character levels up
+        //This defines how a skill is obtained
+
+        //Every character has this
         if (skill_list.empty()) {
-            skill_list.insert(Attack);
+            skill_list.insert(std::make_tuple(Attack,"Attack"));
             std::cout << "Added Attack to the list!\n";
         }
+        //Strength must be atleast 5 to have this
         if (this->stat_sheet["STR"] >=5) {
-            skill_list.insert(Heavy_Swing);
+            skill_list.insert(std::make_tuple(Heavy_Swing,"Heavy Swing"));
             std::cout << "Added Heavy_Swing to the list!\n";
         }
     }
@@ -134,6 +144,10 @@ public:
     //Returns current health value
     int getHealth() {
         return this->current_health;
+    }
+
+    std::set<std::tuple <skills,std::string>> get_skills() {
+        return skill_list;
     }
     //This will display all of the characters stats
     void display_stats() {
