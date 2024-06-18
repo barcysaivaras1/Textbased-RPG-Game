@@ -6,10 +6,11 @@
 #include <unordered_map>
 #include <ctime>
 #include <set>
+#include <windows.h>
 
 enum races  {Human,Elf,Orc,Lizard,Arachnid};
 enum types {Warrior,Bandit,Traveller,Barbarian,Wizard};
-enum skills{Attack,Heavy_Swing};
+enum skills{Attack,Heavy_Swing,Rock_Shoot};
 
 //Will probably need to store the set of skills available to a character
 //Maybe store all available skills in combat or make a new class,so that we can call an object
@@ -40,12 +41,14 @@ private:
         //Every character has this
         if (skill_list.empty()) {
             skill_list.insert(std::make_tuple(Attack,"Attack"));
-            std::cout << "Added Attack to the list!\n";// TESTING
         }
         //Strength must be atleast 5 to have this
         if (this->stat_sheet["STR"] >=5) {
             skill_list.insert(std::make_tuple(Heavy_Swing,"Heavy Swing"));
-            std::cout << "Added Heavy_Swing to the list!\n";// TESTING
+        }
+        //Intelligence must be atleast 2 to have this spell
+        if(this->stat_sheet["INT"] >=2) {
+            skill_list.insert(std::make_tuple(Rock_Shoot,"Rock Shoot"));
         }
     }
 public:
@@ -155,11 +158,23 @@ public:
             this->current_health+=amount;
         }
     }
+    bool useMana(int amount) {
+        bool canUseSpell = false;
+        if (current_mana >= amount) {
+            current_mana-=amount;
+            canUseSpell = true;
+        }
+        else {
+            std::cout << "**************NOT ENOUGH MANA**************\n";
+        }
+        return canUseSpell;
+
+    }
+
     //Returns current health value
     int getHealth() {
         return this->current_health;
     }
-
     //Returns current Mana value
     int getMana() {
         return this->current_mana;

@@ -53,6 +53,7 @@ int main() {
         int type = rand() % 5;
 
         int turn_counter = 1;
+        Player.display_stats();
 
         //Create an Enemy
         character Enemy((races)race,(types)type,false);
@@ -61,7 +62,6 @@ int main() {
         do {
             std::cout << "************* Combat Turn " << turn_counter << " *************\n";
             Enemy.printArt();
-            Player.display_stats();
             std::cout << "\n";
             std::cout << "Your Health : " << Player.getHealth() << "\n";
             std::cout << "Your Mana : " << Player.getMana() << "\n";

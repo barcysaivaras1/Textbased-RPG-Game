@@ -12,6 +12,7 @@ public:
     //This will be turn based
     // **CURRENTLY ONLY DAMAGE**
     void player_turn(character &attacker, character &defender) {
+
         std::cout << "**********List of Available Skills**********\n";
         int counter = 0;
 
@@ -24,11 +25,18 @@ public:
             std::cout << counter << ". " << std::get<1>(skill) << "\n";
         }
         std::cout << "Please choose a skill\n";
-        int player_skill_choice;
-        std::cin >> player_skill_choice;
 
-        //Skill is used in this function call
-        use_skill(array_of_skills[player_skill_choice-1],attacker,defender);
+        bool successful_turn = true;
+        do {
+            std::cin.clear();
+            fflush(stdin);
+
+            int player_skill_choice;
+            std::cin >> player_skill_choice;
+
+            //Skill is used in this function call
+            successful_turn = use_skill(array_of_skills[player_skill_choice-1],attacker,defender);
+        }while(!successful_turn);
 
     }
 
@@ -44,7 +52,8 @@ public:
 
     //Skills
     //What a skill does is defined here
-    void use_skill(skills skill, character &attacker,character &defender) {
+    bool use_skill(skills skill, character &attacker,character &defender) {
+        bool successful_turn = true;
         double damage;
         switch (skill) {
             case Attack:
@@ -56,7 +65,14 @@ public:
                 std::cout << damage << "\n";
                 defender.damageHealth((int)damage);
                 break;
+            case Rock_Shoot:
+                damage = 7;
+                successful_turn = attacker.useMana(1);
+                if(successful_turn) {
+                    defender.damageHealth(damage);
+                }
+                break;
         }
-        std::cout << "Hi!\n";
+        return successful_turn;
     }
 };
