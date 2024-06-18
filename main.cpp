@@ -42,26 +42,32 @@ int main() {
 
     type = (types)user_input;
     //Player Object
-    character Player(race,type);
+    character Player(race,type,true);
+    int battle_counter = 1;
 
     //The loop will break if the players health reaches 0 or below
-    int turn_counter = 1;
     while(Player.getHealth() > 0) {
         //Number of arms generated, 1 - 4
         srand(time((NULL)));
         int race = rand() % 5;
         int type = rand() % 5;
 
+        int turn_counter = 1;
 
         //Create an Enemy
-        character Enemy((races)race,(types)type);
+        character Enemy((races)race,(types)type,false);
+        std::cout << "Battle #" << battle_counter << "\n";
         //Combat will continue until the enemy dies
         do {
             std::cout << "************* Combat Turn " << turn_counter << " *************\n";
             Enemy.printArt();
-            Enemy.display_stats();
+            Player.display_stats();
             std::cout << "\n";
-            std::cout << "Player Health : " << Player.getHealth() << "\n";
+            std::cout << "Your Health : " << Player.getHealth() << "\n";
+            std::cout << "Your Mana : " << Player.getMana() << "\n";
+            std::cout << "\n";
+            std::cout << "---------------Enemy Stats---------------\n";
+
             std::cout << "Enemy Health : " << Enemy.getHealth() << "\n";
             turn_counter+=1;
             std::cout << "\n";
@@ -72,6 +78,7 @@ int main() {
             fight.enemy_turn(Enemy,Player);
             //_sleep(1000);
         }while(Enemy.getHealth() > 0 & Player.getHealth() > 0);
+        battle_counter+=1;
     }
 
     std::cout << "You have died, your adventure end here";

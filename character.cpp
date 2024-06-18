@@ -24,7 +24,8 @@ private:
     int current_health;
     //These two values will come in a further update
     //int experience;
-    //int mana;
+    int max_mana;
+    int current_mana;
     races race;
     types type;
     std::set<std::tuple <skills,std::string>> skill_list;
@@ -49,7 +50,7 @@ private:
     }
 public:
     //A character object must be sent a valid race and a valid class
-    character(races race,types type){
+    character(races race,types type,bool player){
         this->race = race;
         this->type = type;
         //Every character starts with these base stats
@@ -116,8 +117,21 @@ public:
         stat_sheet["DEX"]+=num_legs;
 
 
-        //Health amount
-        current_health = stat_sheet["CON"]*5;
+        //Health for player
+        if (player) {
+            current_health = (stat_sheet["CON"]*5)+25;
+            max_health = current_health;
+        }
+        //Health for enemies
+        //Rather than multiplying by a constant amount
+        //I can later base their health off of how many fights the user had gone through
+        else{
+            current_health = (stat_sheet["CON"]*3);
+        }
+
+        //Mana amount
+        current_mana = stat_sheet["INT"]*2;
+        max_mana = current_mana;
 
         //Adding Skills to the list based on the users stats
         this->add_skills();
@@ -146,11 +160,17 @@ public:
         return this->current_health;
     }
 
+    //Returns current Mana value
+    int getMana() {
+        return this->current_mana;
+    }
+
     std::set<std::tuple <skills,std::string>> get_skills() {
         return skill_list;
     }
     //This will display all of the characters stats
     void display_stats() {
+        std::cout << "-----------Your Stats-----------\n";
         std::cout << "Strength : " << stat_sheet["STR"] << "\n";
         std::cout << "Dexterity : " << stat_sheet["DEX"] << "\n";
         std::cout << "Intelligence : " << stat_sheet["INT"] << "\n";
@@ -181,22 +201,8 @@ public:
                 std::cout << "  \\ : |       |_____._____|       | : /\n";
                 std::cout << "  /   (       |----|------|       )   \\\n";
                 std::cout << " /... .|      |    |      |      |. ...\\\n";
-                std::cout << "|::::/'' jgs /     |       \\     ''\\::::|\n";
+                std::cout << "|::::/''     /     |       \\     ''\\::::|\n";
                 std::cout << "'\"\"\"\"       /'    .L_      `\\       \"\"\"\"'\n";
-                std::cout << "           /'-.,__/` `\\__..-'\\\n";
-                std::cout << "          ;      /     \\      ;\n";
-                std::cout << "          :     /       \\     |\n";
-                std::cout << "          |    /         \\.   |\n";
-                std::cout << "          |`../           |  ,/\n";
-                std::cout << "          ( _ )           |  _)\n";
-                std::cout << "          |   |           |   |\n";
-                std::cout << "          |___|           \\___|\n";
-                std::cout << "          :===|            |==|\n";
-                std::cout << "           \\  /            |__|\n";
-                std::cout << "           /\\/\\           /\"\"\"`8.__\n";
-                std::cout << "           |oo|           \\__.//___)\n";
-                std::cout << "           |==|\n";
-                std::cout << "           \\__/\n";
                 break;
             case Elf:
                 std::cout << "            ..-.--..\n";
