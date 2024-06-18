@@ -74,8 +74,11 @@ int main() {
             std::cout << "****PLAYER TURN****\n";
             fight.player_turn(Player,Enemy);
             std::cout << "\n";
-            std::cout << "****ENEMY TURN****\n";
-            fight.enemy_turn(Enemy,Player);
+            if(Enemy.getHealth() > 0) {
+                std::cout << "****ENEMY TURN****\n";
+                fight.enemy_turn(Enemy,Player);
+            }
+
             //_sleep(1000);
         }while(Enemy.getHealth() > 0 & Player.getHealth() > 0);
         battle_counter+=1;
