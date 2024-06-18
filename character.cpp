@@ -10,7 +10,7 @@
 
 enum races  {Human,Elf,Orc,Lizard,Arachnid};
 enum types {Warrior,Bandit,Traveller,Barbarian,Wizard};
-enum skills{Attack,Heavy_Swing,Rock_Shoot};
+enum skills{Attack,Heavy_Swing,Rock_Shoot,Fireball};
 
 //Will probably need to store the set of skills available to a character
 //Maybe store all available skills in combat or make a new class,so that we can call an object
@@ -50,6 +50,10 @@ private:
         if(this->stat_sheet["INT"] >=2) {
             skill_list.insert(std::make_tuple(Rock_Shoot,"Rock Shoot"));
         }
+        //Intelligence must be atleast 6 to have this spell
+        if(this->stat_sheet["INT"] >=6) {
+            skill_list.insert(std::make_tuple(Fireball,"Fireball"));
+        }
     }
 public:
     //A character object must be sent a valid race and a valid class
@@ -63,22 +67,23 @@ public:
         stat_sheet["CON"] = 2;
         stat_sheet["DEF"] = 2;
 
+
         //Additional Stats Based on race
         switch(this->race) {
             case(Human):
-                stat_sheet["DEX"]+=1;
+                stat_sheet["DEX"]+=3;
                 break;
             case(Elf):
-                stat_sheet["INT"]+=1;
+                stat_sheet["INT"]+=3;
                 break;
             case(Orc):
-                stat_sheet["STR"]+=1;
+                stat_sheet["STR"]+=3;
                 break;
             case(Lizard):
-                stat_sheet["CON"]+=1;
+                stat_sheet["CON"]+=3;
                 break;
             case(Arachnid):
-                stat_sheet["DEF"]+=1;
+                stat_sheet["DEF"]+=3;
                 break;
             default:
                 std::cout << "INVALID RACE";

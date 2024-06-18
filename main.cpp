@@ -22,7 +22,7 @@ int main() {
         std::cout << "5. Arachnid\n";
         std::cin >> user_input;
     }while(user_input < 1 && user_input < 5);
-    race = (races)user_input;
+    race = (races)(user_input-1);
 
     do {
         std::cin.clear();

@@ -72,6 +72,13 @@ public:
                     defender.damageHealth(damage);
                 }
                 break;
+            case Fireball:
+                damage = 12;
+                successful_turn = attacker.useMana(2);
+                if(successful_turn) {
+                    defender.damageHealth(damage);
+                }
+                break;
         }
         return successful_turn;
     }
