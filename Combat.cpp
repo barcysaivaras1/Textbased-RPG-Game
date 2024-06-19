@@ -26,7 +26,11 @@ public:
         }
         std::cout << "Please choose a skill\n";
 
-        bool successful_turn = true;
+
+
+        //Conditions 0 - No Mana so we need to loop
+        //Conditions 1 - Extra turn
+        bool conditions[2];
         do {
             std::cin.clear();
             fflush(stdin);
@@ -35,8 +39,8 @@ public:
             std::cin >> player_skill_choice;
 
             //Skill is used in this function call
-            successful_turn = use_skill(array_of_skills[player_skill_choice-1],attacker,defender);
-        }while(!successful_turn);
+            use_skill(array_of_skills[player_skill_choice-1],attacker,defender,conditions);
+        }while(conditions[0]);
 
     }
 
@@ -52,16 +56,20 @@ public:
 
     //Skills
     //What a skill does is defined here
-    bool use_skill(skills skill, character &attacker,character &defender) {
+     void use_skill(skills skill, character &attacker,character &defender,bool conditions[]) {
         bool successful_turn = true;
         double damage;
+
+
+        //Later refactor so that i resuse code more
+        //There is a lot of duplicated code
         switch (skill) {
             case Attack:
                 damage = 5;
                 defender.damageHealth(damage);
                 break;
             case Heavy_Swing:
-                damage = round(attacker.get_stats()["STR"] * 1.25);
+                damage = round(attacker.get_stats()["STR"] * 1.5);
                 std::cout << damage << "\n";
                 defender.damageHealth((int)damage);
                 break;
@@ -69,6 +77,7 @@ public:
                 damage = 7;
                 successful_turn = attacker.useMana(1);
                 if(successful_turn) {
+                    conditions[0] = false;
                     defender.damageHealth(damage);
                 }
                 break;
@@ -76,10 +85,23 @@ public:
                 damage = 12;
                 successful_turn = attacker.useMana(2);
                 if(successful_turn) {
+                    conditions[0] = false;
                     defender.damageHealth(damage);
                 }
                 break;
+            case Quick_Jabs:
+                damage = round(attacker.get_stats()["DEX"] * 1.25);
+                std::cout << damage << "\n";
+                defender.damageHealth((int)damage);
+                break;
+            }
+
+        //No Mana
+        if(!successful_turn) {
+            conditions[0] = true;
         }
-        return successful_turn;
+        else {
+            conditions[0] = false;
+        }
     }
 };
