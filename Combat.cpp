@@ -31,6 +31,12 @@ public:
         //Conditions 0 - No Mana so we need to loop
         //Conditions 1 - Extra turn
         bool conditions[2];
+        conditions[1] = false;
+        userPickSkill( attacker,defender,array_of_skills,conditions);
+
+    }
+
+    void userPickSkill(character &attacker, character &defender,skills array_of_skills[],bool conditions[]){
         do {
             std::cin.clear();
             fflush(stdin);
@@ -39,9 +45,8 @@ public:
             std::cin >> player_skill_choice;
 
             //Skill is used in this function call
-            use_skill(array_of_skills[player_skill_choice-1],attacker,defender,conditions);
+            use_skill(array_of_skills[player_skill_choice-1],attacker,defender,conditions,array_of_skills);
         }while(conditions[0]);
-
     }
 
     //This is for the enemy turn
@@ -56,8 +61,9 @@ public:
 
     //Skills
     //What a skill does is defined here
-     void use_skill(skills skill, character &attacker,character &defender,bool conditions[]) {
+     void use_skill(skills skill, character &attacker,character &defender,bool conditions[],skills skill_arr[]) {
         bool successful_turn = true;
+        bool exta_turn = false;
         double damage;
 
 
@@ -93,9 +99,21 @@ public:
                 damage = round(attacker.get_stats()["DEX"] * 1.25);
                 std::cout << damage << "\n";
                 defender.damageHealth((int)damage);
+
+                if (!conditions[1]) {
+                    std::cout << "You are so fast you get an Extra Turn!\n";
+                    exta_turn = true;
+                }
                 break;
             }
 
+        //If the player uses an ability that grants them an extra turn
+        //The extra turn should only activate ONCE!
+        //Regardless if another ability with extra turn is used
+        if (exta_turn) {
+            conditions[1] = true;
+            userPickSkill(attacker,defender,skill_arr,conditions);
+        }
         //No Mana
         if(!successful_turn) {
             conditions[0] = true;
