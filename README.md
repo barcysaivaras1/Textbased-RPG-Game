@@ -1,6 +1,4 @@
-This is a project i decided to create to develop my C++ skills;
-
-#Simple text based RPG
+##Simple text based RPG
 This is a simple text based rpg that i decided to develop to learn C++ and to achieve a better understanding and comfortability with the language;
 This has some simple procedural features such as different types of enemies and procedural stats;
 
